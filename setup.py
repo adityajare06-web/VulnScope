@@ -25,6 +25,7 @@ setup(
         "rich>=13.7.0",
         "Jinja2>=3.1.3",
         "PyYAML>=6.0.1",
+        "Flask>=3.0.0",
     ],
     extras_require={
         "dev": [

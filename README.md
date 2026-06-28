@@ -81,6 +81,7 @@ VulnScope does **not** include any offensive capabilities — no exploitation, n
 ### ⚙️ Developer Experience
 | Feature | Description |
 |---------|-------------|
+| **Interactive Web GUI** | Stunning Flask-powered web dashboard with real-time scan progress |
 | **Rich Terminal UI** | Color-coded output, progress bars, ASCII art banner via Rich |
 | **YAML Configuration** | Persistent settings with CLI override support |
 | **Modular Architecture** | Clean OOP design with abstract reporters and separated concerns |
@@ -249,7 +250,19 @@ vulnscope --version
 
 ## 🚀 Usage
 
-### Basic Scan
+### Interactive Web GUI
+
+VulnScope now includes a stunning, built-in Web GUI that allows you to configure targets, run scans in the background, and view results in real-time on a dark-themed glassmorphism dashboard.
+
+```bash
+# Launch the Web GUI server
+python -m vulnscope --gui
+```
+
+Once the server starts, open your browser and navigate to **http://127.0.0.1:5000**.
+From the sidebar, enter your Target (e.g. `127.0.0.1`), Ports (e.g. `top100`), and hit **Launch Scan**.
+
+### Basic Scan (CLI)
 
 ```bash
 # Scan a subnet with default settings (top 100 ports, 100 threads)
@@ -259,6 +272,9 @@ python -m vulnscope 192.168.1.0/24
 ### Advanced Examples
 
 ```bash
+# Launch the Interactive Web GUI
+python -m vulnscope --gui
+
 # Scan an IP range with custom ports
 python -m vulnscope 192.168.1.10-192.168.1.50 -p 22,80,443,3306,8080
 
@@ -282,7 +298,8 @@ python -m vulnscope 192.168.1.0/24 -f html,csv -o /path/to/reports
 
 | Option | Short | Default | Description |
 |--------|-------|---------|-------------|
-| `target` | — | *(required)* | Target specification: CIDR, IP range, or single IP |
+| `--gui`  | — | `False` | Launch the interactive Web GUI dashboard |
+| `target` | — | *(required unless --gui)* | Target specification: CIDR, IP range, or single IP |
 | `--ports` | `-p` | `top100` | Port specification: `top100`, `top1000`, range, or list |
 | `--threads` | `-t` | `100` | Number of concurrent scanning threads |
 | `--timeout` | — | `2.0` | TCP connection timeout in seconds |
